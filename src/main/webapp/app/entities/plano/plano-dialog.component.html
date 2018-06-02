@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPlanoLabel">Create or edit a Plano</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!plano.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="plano.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="field_nome"
+                [(ngModel)]="plano.nome" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_data">Data</label>
+            <div class="input-group">
+                <input id="field_data" type="text" class="form-control" name="data" ngbDatepicker  #dataDp="ngbDatepicker" [(ngModel)]="plano.data"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dataDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_ativo">Ativo</label>
+            <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
+                [(ngModel)]="plano.ativo" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_detalhes">Detalhes</label>
+            <input type="text" class="form-control" name="detalhes" id="field_detalhes"
+                [(ngModel)]="plano.detalhes" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_orcamento">Orcamento</label>
+            <select class="form-control" id="field_orcamento" name="orcamento" [(ngModel)]="plano.orcamento">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contaOption.id === plano.orcamento?.id ? plano.orcamento : contaOption" *ngFor="let contaOption of orcamentos; trackBy: trackContaById">{{contaOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

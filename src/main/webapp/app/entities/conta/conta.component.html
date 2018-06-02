@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span>Contas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-conta" [routerLink]="['/', { outlets: { popup: ['conta-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Conta
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="contas">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nome"><span>Nome</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="valor"><span>Valor</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="data"><span>Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parcelas"><span>Parcelas</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isentrada"><span>Isentrada</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ativo"><span>Ativo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="destino"><span>Destino</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="area"><span>Area</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="recurso"><span>Recurso</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let conta of contas ;trackBy: trackId">
+                <td><a [routerLink]="['../conta', conta.id ]">{{conta.id}}</a></td>
+                <td>{{conta.nome}}</td>
+                <td>{{conta.valor}}</td>
+                <td>{{conta.data | date:'mediumDate'}}</td>
+                <td>{{conta.parcelas}}</td>
+                <td>{{conta.isentrada}}</td>
+                <td>{{conta.ativo}}</td>
+                <td>{{conta.destino}}</td>
+                <td>{{conta.area}}</td>
+                <td>{{conta.recurso}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../conta', conta.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'conta/'+ conta.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'conta/'+ conta.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="contas && contas.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
