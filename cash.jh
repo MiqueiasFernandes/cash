@@ -1,0 +1,42 @@
+
+enum Destino {
+    MIQUEIAS, ALDA, ISAAC, RUTH, FAMILIA
+}
+
+enum Recurso {
+	BB_CREDITO, BB_DEBITO, CAIXA, NUBANK_M_C, NUBANK_A_C, DINHEIRO
+}
+
+enum Area {
+	ALIMENTAR, ROUPA, ELETRO, COMBUSTIVEL, CARRO, CASA, EDUCACAO, SAUDE, ESTETICA, OUTRO
+}
+
+
+entity Conta {
+    nome String,
+	valor Float,
+    data LocalDate,
+    parcelas Integer,
+    isentrada Boolean,
+    ativo Boolean,
+    destino Destino,
+    area Area,
+    recurso Recurso
+}
+
+
+entity Plano {
+	nome String,
+    data LocalDate,
+    ativo Boolean,
+    detalhes String
+}
+
+relationship OneToOne {
+	Plano{orcamento} to Conta
+}
+
+
+// Set pagination options
+paginate * with pagination
+
