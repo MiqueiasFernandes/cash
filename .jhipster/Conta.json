@@ -1,0 +1,51 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "parcelas",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "isentrada",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "ativo",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "destino",
+            "fieldType": "Destino",
+            "fieldValues": "MIQUEIAS,ALDA,ISAAC,RUTH,FAMILIA"
+        },
+        {
+            "fieldName": "area",
+            "fieldType": "Area",
+            "fieldValues": "ALIMENTAR,ROUPA,ELETRO,CARRO,CASA,EDUCACAO,SAUDE,ESTETICA,OUTRO"
+        },
+        {
+            "fieldName": "recurso",
+            "fieldType": "Recurso",
+            "fieldValues": "BB_CREDITO,BB_DEBITO,CAIXA,NUBANK_M_C,NUBANK_A_C,DINHEIRO"
+        }
+    ],
+    "changelogDate": "20180602112832",
+    "entityTableName": "conta",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

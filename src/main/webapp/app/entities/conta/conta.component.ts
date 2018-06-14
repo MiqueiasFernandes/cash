@@ -10,7 +10,27 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-conta',
-    templateUrl: './conta.component.html'
+    templateUrl: './conta.component.html',
+    styles: [`
+        @media only screen and (min-width: 900px) {
+            .titulo {
+                justify-content: space-around;
+                display: flex;
+            }
+        }
+        .data {
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            padding: 2px;
+            border-radius: 2px;
+        }
+        .mes {
+            width: 100px;
+            text-align: right;
+        }
+        .ano {
+            width: 100px;
+        }
+    `]
 })
 export class ContaComponent implements OnInit, OnDestroy {
 
@@ -28,6 +48,8 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    mes = 0;
+    ano = 0;
 
     constructor(
         private contaService: ContaService,
@@ -38,6 +60,9 @@ currentAccount: any;
         private router: Router,
         private eventManager: JhiEventManager
     ) {
+        const dt = new Date();
+        this.mes = (dt.getMonth() + 1);
+        this.ano = dt.getFullYear();
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data.pagingParams.page;
@@ -48,10 +73,14 @@ currentAccount: any;
     }
 
     loadAll() {
+        this.contas = [];
         this.contaService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort(),
+            mes: this.mes,
+            ano: this.ano,
+        }).subscribe(
                 (res: HttpResponse<Conta[]>) => this.onSuccess(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
         );

@@ -1,6 +1,16 @@
 <div>
-    <h2>
+    <h2 class="titulo">
         <span>Contas</span>
+
+
+        <div class="data"><input type="number" [(ngModel)]="mes" class="mes">/<input type="number" [(ngModel)]="ano" class="ano"></div>
+
+
+        <button class="btn btn-primary" (click)="loadAll()">
+            <span class="fa fa-refresh"></span>
+            Recarregar
+        </button>
+
         <button class="btn btn-primary float-right jh-create-entity create-conta" [routerLink]="['/', { outlets: { popup: ['conta-new'] } }]">
             <span class="fa fa-plus"></span>
             <span >
@@ -21,7 +31,7 @@
             <th jhiSortBy="valor"><span>Valor</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="data"><span>Data</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="parcelas"><span>Parcelas</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="isentrada"><span>Isentrada</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isentrada"><span>Tipo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="ativo"><span>Ativo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="destino"><span>Destino</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="area"><span>Area</span> <span class="fa fa-sort"></span></th>
@@ -33,11 +43,11 @@
             <tr *ngFor="let conta of contas ;trackBy: trackId">
                 <td><a [routerLink]="['../conta', conta.id ]">{{conta.id}}</a></td>
                 <td>{{conta.nome}}</td>
-                <td>{{conta.valor}}</td>
-                <td>{{conta.data | date:'mediumDate'}}</td>
+                <td>{{conta.valor | currency:'BRL':true:'.2-2'}}</td>
+                <td>{{conta.data | date:'dd/MM/yy'}}</td>
                 <td>{{conta.parcelas}}</td>
-                <td>{{conta.isentrada}}</td>
-                <td>{{conta.ativo}}</td>
+                <td><span class="badge badge-{{conta.isentrada ? 'primary' : 'danger'}}">{{conta.isentrada ? 'Receita' : 'Despesa'}}</span></td>
+                <td><span class="fa fa-{{conta.ativo ? 'check' : 'remove'}}"></span></td>
                 <td>{{conta.destino}}</td>
                 <td>{{conta.area}}</td>
                 <td>{{conta.recurso}}</td>

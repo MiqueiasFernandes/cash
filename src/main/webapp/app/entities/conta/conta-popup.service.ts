@@ -42,7 +42,9 @@ export class ContaPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.contaModalRef(component, new Conta());
+                    const c = new Conta();
+                    c.parcelas = 1;
+                    this.ngbModalRef = this.contaModalRef(component, c);
                     resolve(this.ngbModalRef);
                 }, 0);
             }

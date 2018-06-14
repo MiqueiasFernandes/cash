@@ -35,10 +35,13 @@
         <div class="form-group">
             <label class="form-control-label" for="field_parcelas">Parcelas</label>
             <input type="number" class="form-control" name="parcelas" id="field_parcelas"
-                [(ngModel)]="conta.parcelas" />
+                [(ngModel)]="conta.parcelas" value="1" min="1" max="100"/>
+        </div>
+        <div *ngIf="conta && conta.parcelas && conta.parcelas > 1" style="font-weight: bold">
+            Termina em: {{ getDate() | date}}
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_isentrada">Isentrada</label>
+            <label class="form-control-label" for="field_isentrada">É uma receita?</label>
             <input type="checkbox" class="form-control" name="isentrada" id="field_isentrada"
                 [(ngModel)]="conta.isentrada" />
         </div>
@@ -63,7 +66,6 @@
                 <option value="ALIMENTAR">ALIMENTAR</option>
                 <option value="ROUPA">ROUPA</option>
                 <option value="ELETRO">ELETRO</option>
-                <option value="COMBUSTIVEL">COMBUSTIVEL</option>
                 <option value="CARRO">CARRO</option>
                 <option value="CASA">CASA</option>
                 <option value="EDUCACAO">EDUCACAO</option>

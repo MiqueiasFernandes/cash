@@ -1,41 +1,164 @@
-<div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
-    </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome, Java Hipster!</h1>
-        <p class="lead">This is your homepage</p>
 
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>You don't have an account yet?</span>
-                <a class="alert-link" routerLink="register">Register a new account</a>
-            </div>
-        </div>
-
-        <p>
-            If you have any question on JHipster:
-        </p>
-
+<div class="row" *ngIf="isAuthenticated() && controls">
+    <div class="col-md-4">
+        Destino
         <ul>
-            <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener">follow @java_hipster on Twitter</a></li>
+            <li>
+                <label for="MIQUEIAS">MIQUEIAS</label>
+                <input type="checkbox" checked [(ngModel)]="MIQUEIAS" id="MIQUEIAS" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="ALDA">ALDA</label>
+                <input type="checkbox" checked [(ngModel)]="ALDA" id="ALDA" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="ISAAC">ISAAC</label>
+                <input type="checkbox" checked [(ngModel)]="ISAAC" id="ISAAC" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="RUTH">RUTH</label>
+                <input type="checkbox" checked [(ngModel)]="RUTH" id="RUTH" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="FAMILIA">FAMILIA</label>
+                <input type="checkbox" checked [(ngModel)]="FAMILIA" id="FAMILIA" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="Receitas">Só as Receitas dele ...</label>
+                <input type="checkbox" checked [(ngModel)]="entradas" id="Receitas" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="Despesas">Só as Despesas dele ...</label>
+                <input type="checkbox" checked [(ngModel)]="despesas" id="Despesas" (change)="atualizar()">
+            </li>
         </ul>
-
-        <p>
-            <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
-        </p>
+    </div>
+    <div class="col-md-4">
+        Recurso
+        <ul>
+            <li>
+                <label for="BB_CREDITO">BB_CREDITO</label>
+                <input type="checkbox" checked [(ngModel)]="BB_CREDITO" id="BB_CREDITO" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="BB_DEBITO">BB_DEBITO</label>
+                <input type="checkbox" checked [(ngModel)]="BB_DEBITO" id="BB_DEBITO" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="CAIXA">CAIXA</label>
+                <input type="checkbox" checked [(ngModel)]="CAIXA" id="CAIXA" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="NUBANK_M_C">NUBANK_M_C</label>
+                <input type="checkbox" checked [(ngModel)]="NUBANK_M_C" id="NUBANK_M_C" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="NUBANK_A_C">NUBANK_A_C</label>
+                <input type="checkbox" checked [(ngModel)]="NUBANK_A_C" id="NUBANK_A_C" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="DINHEIRO">DINHEIRO</label>
+                <input type="checkbox" checked [(ngModel)]="DINHEIRO" id="DINHEIRO" (change)="atualizar()">
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        Area
+        <ul>
+            <li>
+                <label for="ALIMENTAR">ALIMENTAR</label>
+                <input type="checkbox" checked [(ngModel)]="ALIMENTAR" id="ALIMENTAR" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="ROUPA">ROUPA</label>
+                <input type="checkbox" checked [(ngModel)]="ROUPA" id="ROUPA" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="ELETRO">ELETRO</label>
+                <input type="checkbox" checked [(ngModel)]="ELETRO" id="ELETRO" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="CARRO">CARRO</label>
+                <input type="checkbox" checked [(ngModel)]="CARRO" id="CARRO" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="CASA">CASA</label>
+                <input type="checkbox" checked [(ngModel)]="CASA" id="CASA" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="EDUCACAO">EDUCACAO</label>
+                <input type="checkbox" checked [(ngModel)]="EDUCACAO" id="EDUCACAO" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="SAUDE">SAUDE</label>
+                <input type="checkbox" checked [(ngModel)]="SAUDE" id="SAUDE" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="ESTETICA">ESTETICA</label>
+                <input type="checkbox" checked [(ngModel)]="ESTETICA" id="ESTETICA" (change)="atualizar()">
+            </li>
+            <li>
+                <label for="OUTRO">OUTRO</label>
+                <input type="checkbox" checked [(ngModel)]="OUTRO" id="OUTRO" (change)="atualizar()">
+            </li>
+        </ul>
     </div>
 </div>
+
+<div class="row" *ngIf="isAuthenticated()">
+    <div class="col-md-4">
+        <select class="form-control" name="modo" [(ngModel)]="modo" id="modo" (change)="atualizar()">
+            <option value="1">Saldo</option>
+            <option value="2">Planos</option>
+        </select>
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+       Ano: <input type="number" [(ngModel)]="ano" (change)="atualizar()">
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+        <button class="btn btn-primary" (click)="extrato()">
+            <span class="fa fa-cloud-download"></span>
+            Extrato
+        </button>
+        <button class="btn btn-primary" (click)="carregar()">
+            <span class="fa fa-refresh"></span>
+            Recarregar
+        </button>
+        <button class="btn btn-primary" (click)="controls = !controls">
+            <span class="fa fa-check"></span>
+            Controles
+        </button>
+    </div>
+</div>
+
+
+<hr *ngIf="isAuthenticated()">
+
+<div class="row"  *ngIf="isAuthenticated()">
+    <div class="col" *ngIf="show">
+        <div style="display: block;">
+            <canvas baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+            ></canvas>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row"  *ngIf="isAuthenticated()">
+   <pre>
+{{extratostr}}
+   </pre>
+</div>
+
+<div  *ngIf="!isAuthenticated()" (click)="login()">
+    Miquéias & Alda <br>
+    Faça login prara continuar
+</div>
+

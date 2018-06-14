@@ -60,6 +60,17 @@ export class ContaDialogComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
+    getDate() {
+        if (this.conta && this.conta.parcelas < 1) {
+            this.conta.parcelas = 1;
+        }
+        if (this.conta.data) {
+            const data = this.conta.data;
+            const dt = new Date(data.year, data.month - 1, data.day);
+            dt.setMonth(dt.getMonth() + this.conta.parcelas - 1);
+            return dt;
+        }
+    }
 }
 
 @Component({

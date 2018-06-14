@@ -8,6 +8,8 @@ import com.cash.web.rest.errors.BadRequestAlertException;
 import com.cash.web.rest.util.HeaderUtil;
 import com.cash.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -90,9 +92,12 @@ public class ContaResource {
      */
     @GetMapping("/contas")
     @Timed
-    public ResponseEntity<List<Conta>> getAllContas(Pageable pageable) {
-        log.debug("REST request to get a page of Contas");
-        Page<Conta> page = contaRepository.findAll(pageable);
+    public ResponseEntity<List<Conta>> getAllContas(Pageable pageable,
+                                                    @RequestParam("mes") int mes,
+                                                    @RequestParam("ano") int ano) {
+        java.time.LocalDate dt = java.time.LocalDate.of(ano, mes, 1);
+        log.debug("REST request to get a page of Contas a partir de " + dt);
+        Page<Conta> page = contaRepository.findAllByDataAfter(pageable, dt);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/contas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

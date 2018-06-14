@@ -12,7 +12,6 @@ export const enum Area {
     'ALIMENTAR',
     'ROUPA',
     'ELETRO',
-    'COMBUSTIVEL',
     'CARRO',
     'CASA',
     'EDUCACAO',
@@ -31,6 +30,38 @@ export const enum Recurso {
 }
 
 export class Conta implements BaseEntity {
+    public getDestino(): number {
+        return [
+            'MIQUEIAS',
+            'ALDA',
+            'ISAAC',
+            'RUTH',
+            'FAMILIA'
+        ].indexOf(this.destino.toString());
+    }
+    public getArea(): number {
+        return [
+            'ALIMENTAR',
+            'ROUPA',
+            'ELETRO',
+            'CARRO',
+            'CASA',
+            'EDUCACAO',
+            'SAUDE',
+            'ESTETICA',
+            'OUTRO'
+        ].indexOf(this.area.toString());
+    }
+    public getRecurso(): number {
+        return [
+            'BB_CREDITO',
+            'BB_DEBITO',
+            'CAIXA',
+            'NUBANK_M_C',
+            'NUBANK_A_C',
+            'DINHEIRO'
+        ].indexOf(this.recurso.toString());
+    }
     constructor(
         public id?: number,
         public nome?: string,
